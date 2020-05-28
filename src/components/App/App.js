@@ -9,18 +9,16 @@ import {
 import { connect } from 'react-redux';
 
 import Nav from '../Nav/Nav';
-// import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../WorkoutPage/WorkoutPage';
+import NutritionPage from '../NutritionPage/NutritionPage.js';
 
 import { GiHamburgerMenu } from 'react-icons/gi';
 
 import './App.css';
-import WorkoutPage from '../WorkoutPage/WorkoutPage';
 
 class App extends Component {
 
@@ -29,6 +27,7 @@ class App extends Component {
   }
 
   handleClick = () => {
+    // document.getElementById('nav').style.height = '500px';
     console.log('click', this.state);
     this.setState(prevState => ({
       showNav: !prevState.showNav
@@ -46,14 +45,12 @@ class App extends Component {
     return (
       <div>
         {this.props.user.id && (
-        
           <GiHamburgerMenu className="menuButton" onClick={this.handleClick} />
-        
         )}
 
         <Router>
           <div>
-            {this.state.showNav === true & this.props.user.id ? (<Nav />) : null}
+            {this.state.showNav === true ? (<Nav />) : null}
             <Switch>
               {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
               <Redirect exact from="/" to="/home" />
@@ -77,8 +74,8 @@ class App extends Component {
             they will see the info page instead. */}
               <ProtectedRoute
                 exact
-                path="/workout"
-                component={WorkoutPage}
+                path="/nutrition"
+                component={NutritionPage}
               />
               {/* If none of the other routes matched, we will show a 404. */}
               <Route render={() => <h1>404</h1>} />

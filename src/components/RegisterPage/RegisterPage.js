@@ -48,14 +48,14 @@ class RegisterPage extends Component {
           <div>
             <InputLabel htmlFor="input-with-icon-adornment">Username</InputLabel>
             <Input
-              id="input-with-icon-adornment"
+              // id="input-with-icon-adornment"
               startAdornment={
                 <InputAdornment position="start">
                   <PermIdentity />
                 </InputAdornment>
               }
               label="Username"
-              id="filled-basic"
+              // id="filled-basic"
               type="text"
               name="username"
               value={this.state.username}
@@ -88,14 +88,14 @@ class RegisterPage extends Component {
           <div>
             <InputLabel htmlFor="input-with-icon-adornment">Password</InputLabel>
             <Input
-              id="input-with-icon-adornment"
+              // id="input-with-icon-adornment"
               startAdornment={
                 <InputAdornment position="start">
                   <LockOutlined />
                 </InputAdornment>
               }
               label="Password"
-              id="filled-basic"
+              // id="filled-basic"
               type="password"
               name="password"
               value={this.state.password}

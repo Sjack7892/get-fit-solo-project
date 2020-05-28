@@ -75,14 +75,14 @@ class LoginPage extends Component {
           <div>
             <InputLabel htmlFor="input-with-icon-adornment">Username</InputLabel>
             <Input
-              id="input-with-icon-adornment"
+              // id="input-with-icon-adornment"
               startAdornment={
                 <InputAdornment position="start">
                   <PermIdentity />
                 </InputAdornment>
               }
               label="Username"
-              id="filled-basic"
+              // id="filled-basic"
               type="text"
               name="username"
               value={this.state.username}
@@ -93,28 +93,26 @@ class LoginPage extends Component {
           <div>
             <InputLabel htmlFor="input-with-icon-adornment">Password</InputLabel>
             <Input
-              id="input-with-icon-adornment"
+              // id="input-with-icon-adornment"
               startAdornment={
                 <InputAdornment position="start">
                   <LockOutlined />
                 </InputAdornment>
               }
               label="Password"
-              id="filled-basic"
+              // id="filled-basic"
               type="password"
               name="password"
               value={this.state.password}
               onChange={this.handleInputChangeFor('password')}
             />
           </div>
-          {/* <div> */}
             <input
               className="log-in"
               type="submit"
               name="submit"
               value="Log In"
             />
-          {/* </div> */}
           <div className="loginLinks">
             <span style={{opacity: .5}}>Don't have an account?</span>
             <br/>
@@ -127,8 +125,6 @@ class LoginPage extends Component {
           </button>
           </div>
         </form>
-
-    
       </div>
     );
   }

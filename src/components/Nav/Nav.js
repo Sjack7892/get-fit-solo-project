@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
-import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
+import RestaurantIcon from '@material-ui/icons/Restaurant';
 
 
 
 
 const Nav = (props) => (
-  <div className="nav">
+  <div className="nav" id="nav">
     <ul>
       <div className="nav-right">
         <li>
@@ -25,12 +25,13 @@ const Nav = (props) => (
         {props.user.id && (
           <>
             <li>
-              <Link className="nav-link" to="/workout">
+              <Link className="nav-link" to="/nutrition">
                 <div>
-                Workout<br/>
-                <FitnessCenterIcon />
+                  Nutrition
+                <br />
+                  <RestaurantIcon />
                 </div>
-               
+
               </Link>
             </li>
           </>
