@@ -2,9 +2,11 @@ import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* fetchNutrition(action) {
-    console.log('in fetch nutrition!');
+    console.log('in fetch nutrition!', action.payload);
   try {
-    const response = yield axios.get('/api/nutrition');
+    const date = action.payload
+    console.log(date)
+    const response = yield axios.get(`/api/nutrition/${date}`);
     console.log(response.data);
     yield put({ 
         type: 'SET_NUTRITION',

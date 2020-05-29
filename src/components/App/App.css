@@ -6,9 +6,11 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-position-y: 35%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    /* display: flex; */
+    /* flex-direction: column;
+    align-items: center; */
+    max-width: 100%;
+    height: auto;
 }
 
 .alert {
@@ -89,9 +91,19 @@ h3 {
 
 .menuButton {
     font-size: 50px;
-    color: white;
+    /* color: white; */
+    margin-left: 10px;
+    padding: 1px 6px;
 }
 
 .menuButton:hover {
     color: rgb(92, 171, 213);
+}
+
+.menu {
+    /* background-color: teal; */
+    color: rgb(20, 169, 223);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

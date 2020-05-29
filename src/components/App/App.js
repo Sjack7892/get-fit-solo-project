@@ -17,6 +17,7 @@ import UserPage from '../UserPage/UserPage';
 import NutritionPage from '../NutritionPage/NutritionPage.js';
 
 import { GiHamburgerMenu } from 'react-icons/gi';
+import {FaHamburger} from 'react-icons/fa';
 
 import './App.css';
 
@@ -45,7 +46,11 @@ class App extends Component {
     return (
       <div>
         {this.props.user.id && (
-          <GiHamburgerMenu className="menuButton" onClick={this.handleClick} />
+          <div className="menu">
+          <p style={{fontSize: 50}}>GET FIT</p>
+          
+          <FaHamburger className="menuButton" onClick={this.handleClick} />
+          </div>
         )}
 
         <Router>

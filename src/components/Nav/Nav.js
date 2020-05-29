@@ -11,20 +11,20 @@ import RestaurantIcon from '@material-ui/icons/Restaurant';
 
 const Nav = (props) => (
   <div className="nav" id="nav">
-    <ul>
+    {/* <ul> */}
       <div className="nav-right">
-        <li>
+        <p>
           <Link className="nav-link" to="/home">
             {/* Show this link if they are logged in or not,
         but call this link 'Home' if they are logged in,
         and call this link 'Login / Register' if they are not */}
             {props.user.id ? 'Home' : 'Login / Register'}
           </Link>
-        </li>
+        </p>
         {/* Show the link to the info page and the logout button if the user is logged in */}
         {props.user.id && (
           <>
-            <li>
+            <p>
               <Link className="nav-link" to="/nutrition">
                 <div>
                   Nutrition
@@ -33,20 +33,20 @@ const Nav = (props) => (
                 </div>
 
               </Link>
-            </li>
+            </p>
           </>
         )}
         {/* Always show this link since the about page is not protected */}
-        <li>
+        <p>
           <Link className="nav-link" to="/about">
             About
           </Link>
-        </li>
-        <li>
+        </p>
+        <p>
           <LogOutButton />
-        </li>
+        </p>
       </div>
-    </ul>
+    {/* </ul> */}
   </div>
 );
 
