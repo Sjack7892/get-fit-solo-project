@@ -16,7 +16,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import NutritionPage from '../NutritionPage/NutritionPage.js';
 
-import { GiHamburgerMenu } from 'react-icons/gi';
+// import { GiHamburgerMenu } from 'react-icons/gi';
 import {FaHamburger} from 'react-icons/fa';
 
 import './App.css';
@@ -24,20 +24,27 @@ import './App.css';
 class App extends Component {
 
   state = {
-    showNav: false
+    nav: 'navStart'
   }
 
   handleClick = () => {
-    // document.getElementById('nav').style.height = '500px';
     console.log('click', this.state);
-    this.setState(prevState => ({
-      showNav: !prevState.showNav
-    }))
+    if (this.state.nav === 'navClose' || this.state.nav === 'navStart'){
+      this.setState({
+        nav: 'navOpen'
+      })
+    } else {
+        this.setState({
+          nav: 'navClose'
+        })
+    }
+   console.log(this.state.nav)
   }
 
   componentDidMount() {
+    console.log(this.state.nav)
     this.setState({
-      showNav: false
+      nav: 'navStart'
     })
     this.props.dispatch({ type: 'FETCH_USER' })
   }
@@ -55,7 +62,7 @@ class App extends Component {
 
         <Router>
           <div>
-            {this.state.showNav === true ? (<Nav />) : null}
+            {this.props.user.id ? (<Nav navChangeStatus={this.props.setState} navStatus={this.state.nav}/>) : null}
             <Switch>
               {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
               <Redirect exact from="/" to="/home" />
@@ -82,6 +89,7 @@ class App extends Component {
                 path="/nutrition"
                 component={NutritionPage}
               />
+
               {/* If none of the other routes matched, we will show a 404. */}
               <Route render={() => <h1>404</h1>} />
             </Switch>

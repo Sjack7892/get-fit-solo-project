@@ -3,28 +3,28 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
-import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
+// import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 
 
 
 
 const Nav = (props) => (
-  <div className="nav" id="nav">
-    {/* <ul> */}
+  <div className={props.navStatus} id="nav">
+    <ul>
       <div className="nav-right">
-        <p>
+        <li>
           <Link className="nav-link" to="/home">
             {/* Show this link if they are logged in or not,
         but call this link 'Home' if they are logged in,
         and call this link 'Login / Register' if they are not */}
             {props.user.id ? 'Home' : 'Login / Register'}
           </Link>
-        </p>
+        </li>
         {/* Show the link to the info page and the logout button if the user is logged in */}
         {props.user.id && (
           <>
-            <p>
+            <li>
               <Link className="nav-link" to="/nutrition">
                 <div>
                   Nutrition
@@ -33,20 +33,20 @@ const Nav = (props) => (
                 </div>
 
               </Link>
-            </p>
+            </li>
           </>
         )}
         {/* Always show this link since the about page is not protected */}
-        <p>
+        <li>
           <Link className="nav-link" to="/about">
             About
           </Link>
-        </p>
-        <p>
-          <LogOutButton />
-        </p>
+        </li>
+        <li>
+          <LogOutButton  />
+        </li>
       </div>
-    {/* </ul> */}
+    </ul>
   </div>
 );
 

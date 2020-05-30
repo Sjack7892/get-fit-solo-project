@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: teal;
+    /* background-color: teal; */
     height: 100%;
 }
 
@@ -15,14 +15,3 @@
     align-items: center;
 }
 
-.progressBar {
-    background-color: #e1e1e1;
-    height: 10px;
-    width: 200px;
-    border: 1px solid rgb(154, 154, 154);
-}
-
-.progressDone {
-    height: 10px;
-    background-color: #43b3ee;
-}
