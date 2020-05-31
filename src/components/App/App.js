@@ -28,7 +28,6 @@ class App extends Component {
   }
 
   handleClick = () => {
-    console.log('click', this.state);
     if (this.state.nav === 'navClose' || this.state.nav === 'navStart'){
       this.setState({
         nav: 'navOpen'
@@ -38,11 +37,15 @@ class App extends Component {
           nav: 'navClose'
         })
     }
-   console.log(this.state.nav)
+  }
+
+  handleLogout = () => {
+      this.setState({
+        nav: 'navStart'
+      })
   }
 
   componentDidMount() {
-    console.log(this.state.nav)
     this.setState({
       nav: 'navStart'
     })
@@ -55,14 +58,13 @@ class App extends Component {
         {this.props.user.id && (
           <div className="menu">
           <p style={{fontSize: 50}}>GET FIT</p>
-          
           <FaHamburger className="menuButton" onClick={this.handleClick} />
           </div>
         )}
 
         <Router>
           <div>
-            {this.props.user.id ? (<Nav navChangeStatus={this.props.setState} navStatus={this.state.nav}/>) : null}
+            {this.props.user.id ? (<Nav handleLogout={this.handleLogout} navChangeStatus={this.handleClick} navStatus={this.state.nav}/>) : null}
             <Switch>
               {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
               <Redirect exact from="/" to="/home" />

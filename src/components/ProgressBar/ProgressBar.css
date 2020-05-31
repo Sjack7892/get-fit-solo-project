@@ -7,5 +7,13 @@
 
 .progressDone {
     height: 10px;
+    max-width: 200px;
     background-color: #43b3ee;
+}
+
+.progressFull {
+    width: 200px;
+    height: 10px;
+    background-color: #16f29e;
+    z-index: 1;
 }

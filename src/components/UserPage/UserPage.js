@@ -12,7 +12,7 @@ const UserPage = (props) => (
       Welcome, <span id="welcome">{ props.user.username }!</span>
     </h1>
     {/* <p>Your ID is: {props.user.id}</p> */}
-    <LogOutButton className="log-out" />
+    {/* <LogOutButton className="log-out" /> */}
   </div>
 );
 

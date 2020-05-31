@@ -14,7 +14,7 @@ const Nav = (props) => (
     <ul>
       <div className="nav-right">
         <li>
-          <Link className="nav-link" to="/home">
+          <Link onClick={props.navChangeStatus} className="nav-link" to="/home">
             {/* Show this link if they are logged in or not,
         but call this link 'Home' if they are logged in,
         and call this link 'Login / Register' if they are not */}
@@ -25,7 +25,7 @@ const Nav = (props) => (
         {props.user.id && (
           <>
             <li>
-              <Link className="nav-link" to="/nutrition">
+              <Link onClick={props.navChangeStatus} className="nav-link" to="/nutrition">
                 <div>
                   Nutrition
                 <br />
@@ -38,15 +38,16 @@ const Nav = (props) => (
         )}
         {/* Always show this link since the about page is not protected */}
         <li>
-          <Link className="nav-link" to="/about">
+          <Link onClick={props.navChangeStatus} className="nav-link" to="/about">
             About
           </Link>
         </li>
         <li>
-          <LogOutButton  />
+          <LogOutButton handleLogout={props.handleLogout} />
         </li>
       </div>
     </ul>
+    <button onClick={props.navChangeStatus}>Close Menu</button>
   </div>
 );
 
