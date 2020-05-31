@@ -10,7 +10,7 @@ function ProgressBar(props) {
 
     return (
         <div>
-            <h3>{props.name}</h3>
+            <h5>{props.name}</h5>
             <p>Total: {total}{unit} Goal: {goal}{unit} Left: {goal - total}{unit}</p>
             <div className="progressBar">
                 {(total === 0) ? <div className="progressDone" style={{ width: 0 }}></div> : total >= goal ? <div className="progressFull"></div> :

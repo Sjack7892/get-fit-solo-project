@@ -3,7 +3,7 @@ import '../NutritionPage/NutritionPage.css';
 import { connect } from 'react-redux';
 import AddFood from '../AddFood/AddFood';
 import ProgressBar from '../ProgressBar/ProgressBar';
-// import TextField from '@material-ui/core/TextField';
+import { Add, Settings } from '@material-ui/icons/';
 
 const date = new Date().getMonth() + 1 + "-" + new Date().getDate() + "-" + new Date().getFullYear();
 
@@ -18,7 +18,10 @@ class NutritionPage extends Component {
     console.log('nutrition page mounted!', this.props.calorieGoal)
     this.props.dispatch({
       type: 'FETCH_NUTRITION',
-      payload: date
+      // payload: date
+    })
+    this.props.dispatch({
+      type: 'FETCH_FOOD',
     })
     console.log('NutritionPage mounted!')
   }
@@ -54,14 +57,16 @@ class NutritionPage extends Component {
             goal={this.props.fatGoal}
             total={this.props.fatTotal} 
           />
+          <button onClick={this.handleClick}><Add /></button>
+          <button><Settings/></button>
         </div>
-        <button onClick={this.handleClick}>Add Food</button>
+        
         <div>
           {this.state.showAddFood === true ? (<AddFood date={this.state.date} />) : null}
         </div>
 
         <div>
-
+          {JSON.stringify(this.props.food)}
         </div>
 
       </div>
@@ -79,6 +84,7 @@ const mapStateToProps = state => ({
   carbsTotal: state.nutrition.carbs_total,
   fatGoal: state.nutrition.fat_goal,
   fatTotal: state.nutrition.fat_total,
+  food: state.food
 });
 
 export default connect(mapStateToProps)(NutritionPage);

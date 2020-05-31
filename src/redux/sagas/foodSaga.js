@@ -28,10 +28,6 @@ function* postNutrition(action) {
             type: 'FETCH_NUTRITION',
             // payload: date
         })
-        yield put({
-            type: 'FETCH_FOOD',
-            // payload: date
-        })
     } catch (error) {
         console.log('Error in postNutrition:', error);
     }
@@ -52,9 +48,7 @@ function* fetchFood(action) {
 }
 
 function* nutritionSaga() {
-    yield takeEvery('POST_NUTRITION', postNutrition);
-    yield takeEvery('FETCH_NUTRITION', fetchNutrition);
     yield takeEvery('FETCH_FOOD', fetchFood);
 }
 
-export default nutritionSaga;
+// export default nutritionSaga;

@@ -7,6 +7,7 @@ import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import HomeIcon from '@material-ui/icons/Home';
+import Close from '@material-ui/icons/Close';
 
 
 
@@ -46,11 +47,11 @@ const Nav = (props) => (
             </div>
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link onClick={props.navChangeStatus} className="nav-link" to="/about">
             About
           </Link>
-        </li>
+        </li> */}
         <li>
           <div className="nav-link" >
             <LogOutButton handleLogout={props.handleLogout} />
@@ -59,7 +60,7 @@ const Nav = (props) => (
         </li>
       </div>
     </ul>
-    <button onClick={props.navChangeStatus}>Close</button>
+    <button className="navCloseButton" onClick={props.navChangeStatus}><Close/></button>
   </div>
 );
 
