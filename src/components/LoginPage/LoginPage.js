@@ -5,7 +5,6 @@ import { PermIdentity, LockOutlined } from '@material-ui/icons';
 import './LoginPage.css';
 
 
-
 class LoginPage extends Component {
   state = {
     username: '',
@@ -45,7 +44,7 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <form onSubmit={this.login}>
+        <form className="loginForm" onSubmit={this.login}>
           <h1 className="title">Get Fit</h1>
           <h3>Login</h3>
 

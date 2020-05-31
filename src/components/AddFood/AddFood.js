@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './AddFood.css';
+import { InputLabel, Input, TextField } from '@material-ui/core';
 
 class AddFood extends Component {
 
@@ -25,64 +27,79 @@ class AddFood extends Component {
             type: 'POST_NUTRITION',
             payload: this.state
         })
-        // this.props.dispatch({
-        //     type: 'FETCH_NUTRITION',
-        //     payload: this.props.date
-        // })
         console.log(this.state)
 
     }
 
     render() {
         return (
-            <div>
-                <p>{this.props.date}</p>
+            <div className="addFoodForm">
                 <form onSubmit={this.addFood}>
-                    <label>
+                    <InputLabel>
                         Description:
-                    <input
-                            type="text"
-                            name="name"
-                            value={this.state.description}
-                            onChange={this.handleInputChangeFor('description')}
-                        />
-                    </label>
-                    <label>
+                    </InputLabel>
+                    <Input
+                        type="text"
+                        variant="outlined"
+                        name="name"
+                        value={this.state.description}
+                        onChange={this.handleInputChangeFor('description')}
+                    />
+                       {/* <TextField
+          id="outlined-number"
+          label="Number"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+        /> */}
+
+                    <br />
+                    <InputLabel>
                         Calories:
-                    <input
-                            type="number"
-                            name="name"
-                            value={this.state.calories}
-                            onChange={this.handleInputChangeFor('calories')}
-                        />
-                    </label>
-                    <label>
+                    </InputLabel>
+                    <Input
+                        type="number"
+                        name="name"
+                        value={this.state.calories}
+                        onChange={this.handleInputChangeFor('calories')}
+                    />
+
+                    <br />
+                    <InputLabel>
                         Protein:
-                    <input
-                            type="number"
-                            name="name"
-                            value={this.state.protein}
-                            onChange={this.handleInputChangeFor('protein')}
-                        />
-                    </label>
-                    <label>
+                    </InputLabel>
+                    <Input
+                        type="number"
+                        name="name"
+                        value={this.state.protein}
+                        onChange={this.handleInputChangeFor('protein')}
+                    />
+
+                    <br />
+                    <InputLabel>
                         Carbs:
-                    <input
-                            type="number"
-                            name="name"
-                            value={this.state.carbs}
-                            onChange={this.handleInputChangeFor('carbs')}
-                        />
-                    </label>
-                    <label>
+                    </InputLabel>
+                    <Input
+                        type="number"
+                        name="name"
+                        value={this.state.carbs}
+                        onChange={this.handleInputChangeFor('carbs')}
+                    />
+
+                    <br />
+                    <InputLabel>
                         Fat:
-                    <input
-                            type="number"
-                            name="name"
-                            value={this.state.fat}
-                            onChange={this.handleInputChangeFor('fat')}
-                        />
-                    </label>
+                    </InputLabel>
+                    <Input
+                        type="number"
+                        name="name"
+                        value={this.state.fat}
+                        onChange={this.handleInputChangeFor('fat')}
+                    />
+
+                    <br />
                     <input type="submit" value="Submit" />
                 </form>
             </div>
