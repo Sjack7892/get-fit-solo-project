@@ -41,7 +41,6 @@ function* postNutrition(action) {
         yield axios.post(`/api/nutrition`, action.payload);
         yield put({
             type: 'FETCH_TOTALS',
-            // payload: date
         })
         yield put({
             type: 'FETCH_FOOD',
@@ -66,11 +65,48 @@ function* fetchFood(action) {
     }
 }
 
+function* deleteFood(action) {
+    console.log('in delete food!', action.payload);
+    try {
+        const foodID = action.payload
+        const response = yield axios.delete(`/api/nutrition/food/${foodID}`);
+        console.log('delete food response!', response.data);
+        yield put({
+            type: 'FETCH_TOTALS',
+        })
+        yield put({
+            type: 'FETCH_FOOD',
+            payload: date
+        })
+    } catch (error) {
+        console.log('Error in deleteFood:', error);
+    }
+}
+
+function* putFood(action) {
+    console.log('in put food!', action.payload);
+    try {
+        const response = yield axios.put(`/api/nutrition/food`, action.payload);
+        console.log('put food response!', response.data);
+        yield put({
+            type: 'FETCH_TOTALS',
+        })
+        yield put({
+            type: 'FETCH_FOOD',
+            payload: date
+        })
+    } catch (error) {
+        console.log('Error in deleteFood:', error);
+    }
+}
+
 function* nutritionSaga() {
     yield takeEvery('POST_NUTRITION', postNutrition);
     yield takeEvery('FETCH_GOALS', fetchGoals);
     yield takeEvery('FETCH_TOTALS', fetchTotals);
     yield takeEvery('FETCH_FOOD', fetchFood);
+    yield takeEvery('DELETE_FOOD', deleteFood);
+    yield takeEvery('PUT_FOOD', putFood);
 }
 
 export default nutritionSaga;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './AddFood.css';
-import { InputLabel, Input, TextField } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 
 class AddFood extends Component {
 
@@ -29,7 +29,15 @@ class AddFood extends Component {
             payload: this.state
         })
         console.log(this.state)
-        this.props.dispatch({type: 'FETCH_TOTALS'})
+        // this.setState({
+        //     description: '',
+        //     calories: '',
+        //     protein: '',
+        //     carbs: '',
+        //     fat: '',
+        // })
+        this.props.showForm('showAddFood')
+        // this.props.dispatch({type: 'FETCH_TOTALS'})
     }
 
     render() {

@@ -87,4 +87,36 @@ router.post('/', (req, res) => {
         })
 });
 
+router.delete('/food/:foodID', (req, res) => {
+    console.log('delete food requested!');
+    const foodID = req.params.foodID;
+    const queryString = `
+    DELETE FROM "nutrition" WHERE "id" = '${foodID}'
+    ;`;
+    pool.query(queryString)
+    .then(result => {
+        res.sendStatus(200)
+    }).catch(error => {
+        console.log(error);
+        res.sendStatus(500);
+    })
+});
+
+router.put('/food', (req, res) => {
+    console.log('edit food requested!', req.body);
+    const queryString = `
+    UPDATE "nutrition"
+    SET "description" = $1, "calories" = $2, "protein" = $3, "carbs" = $4, "fat" = $5 
+    WHERE "id" = '${req.body.id}'
+    ;`;
+    pool.query(queryString, [req.body.description, req.body.calories, req.body.protein, 
+        req.body.carbs, req.body.fat])
+    .then(result => {
+        res.sendStatus(200)
+    }).catch(error => {
+        console.log(error);
+        res.sendStatus(500);
+    })
+});
+
 module.exports = router;
