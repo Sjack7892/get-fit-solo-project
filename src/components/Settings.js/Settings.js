@@ -7,8 +7,7 @@ class AddFood extends Component {
 
     state = {
         date: this.props.date,
-        description: '',
-        calories: '',
+        goalCalories: '',
         protein: '',
         carbs: '',
         fat: '',
@@ -18,7 +17,6 @@ class AddFood extends Component {
         this.setState({
             [propertyName]: event.target.value,
         });
-        
     }
 
     addFood = (event) => {
@@ -29,73 +27,72 @@ class AddFood extends Component {
             payload: this.state
         })
         console.log(this.state)
-        this.props.dispatch({type: 'FETCH_TOTALS'})
+
     }
 
     render() {
         return (
             <div className="addFoodForm">
                 <form onSubmit={this.addFood}>
-                    {/* <InputLabel>
-                        Description
-                    </InputLabel> */}
-                    <TextField
-                        label="description"
+                    <InputLabel>
+                        Description:
+                    </InputLabel>
+                    <Input
                         type="text"
                         variant="outlined"
                         name="name"
                         value={this.state.description}
                         onChange={this.handleInputChangeFor('description')}
                     />
-   
+                       {/* <TextField
+          id="outlined-number"
+          label="Number"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+        /> */}
 
                     <br />
-                    {/* <InputLabel>
-                        Calories
-                    </InputLabel> */}
-                    <TextField
-                        label="calories"
+                    <InputLabel>
+                        Calories:
+                    </InputLabel>
+                    <Input
                         type="number"
-                        variant="outlined"
                         name="name"
                         value={this.state.calories}
                         onChange={this.handleInputChangeFor('calories')}
                     />
 
                     <br />
-                    {/* <InputLabel>
-                        Protein (g)
-                    </InputLabel> */}
-                    <TextField
-                        label="protein (g)"
+                    <InputLabel>
+                        Protein:
+                    </InputLabel>
+                    <Input
                         type="number"
-                        variant="outlined"
                         name="name"
                         value={this.state.protein}
                         onChange={this.handleInputChangeFor('protein')}
                     />
 
                     <br />
-                    {/* <InputLabel>
-                        Carbs (g)
-                    </InputLabel> */}
-                    <TextField
-                        label="carbs (g)"
+                    <InputLabel>
+                        Carbs:
+                    </InputLabel>
+                    <Input
                         type="number"
-                        variant="outlined"
                         name="name"
                         value={this.state.carbs}
                         onChange={this.handleInputChangeFor('carbs')}
                     />
 
                     <br />
-                    {/* <InputLabel>
-                        Fat (g)
-                    </InputLabel> */}
-                    <TextField
-                        label="fat (g)"
+                    <InputLabel>
+                        Fat:
+                    </InputLabel>
+                    <Input
                         type="number"
-                        variant="outlined"
                         name="name"
                         value={this.state.fat}
                         onChange={this.handleInputChangeFor('fat')}
@@ -109,4 +106,4 @@ class AddFood extends Component {
     }
 }
 
-export default connect()(AddFood);
+export default connect()(Settings);

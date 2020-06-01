@@ -3,15 +3,30 @@ import axios from 'axios';
 
 const date = new Date().getMonth() + 1 + "-" + new Date().getDate() + "-" +new Date().getFullYear();
 
-function* fetchNutrition(action) {
-    console.log('in fetch nutrition!', action.payload);
+function* fetchGoals(action) {
+    console.log('in fetch goals!');
+    try {
+        const response = yield axios.get(`/api/nutrition/goals`);
+        console.log('fetch goals response!', response.data);
+        yield put({
+            type: 'SET_GOALS',
+            payload: response.data
+        });
+
+    } catch (error) {
+        console.log('Error in fetchNutrition:', error);
+    }
+}
+
+function* fetchTotals(action) {
+    console.log('in fetch totals!', action.payload);
     try {
         // const date = action.payload
         console.log(date)
-        const response = yield axios.get(`/api/nutrition/${date}`);
-        console.log('fetch nutrition response!', response.data);
+        const response = yield axios.get(`/api/nutrition/totals/${date}`);
+        console.log('fetch totals response!', response.data);
         yield put({
-            type: 'SET_NUTRITION',
+            type: 'SET_TOTALS',
             payload: response.data
         });
 
@@ -25,12 +40,12 @@ function* postNutrition(action) {
     try {
         yield axios.post(`/api/nutrition`, action.payload);
         yield put({
-            type: 'FETCH_NUTRITION',
+            type: 'FETCH_TOTALS',
             // payload: date
         })
         yield put({
             type: 'FETCH_FOOD',
-            // payload: date
+            payload: date
         })
     } catch (error) {
         console.log('Error in postNutrition:', error);
@@ -40,7 +55,7 @@ function* postNutrition(action) {
 function* fetchFood(action) {
     console.log('in fetch food!', date);
     try {
-        const response = yield axios.get(`/api/food/${date}`);
+        const response = yield axios.get(`/api/nutrition/food/${date}`);
         console.log('fetch food response!', response.data);
         yield put({
             type: 'SET_FOOD',
@@ -53,7 +68,8 @@ function* fetchFood(action) {
 
 function* nutritionSaga() {
     yield takeEvery('POST_NUTRITION', postNutrition);
-    yield takeEvery('FETCH_NUTRITION', fetchNutrition);
+    yield takeEvery('FETCH_GOALS', fetchGoals);
+    yield takeEvery('FETCH_TOTALS', fetchTotals);
     yield takeEvery('FETCH_FOOD', fetchFood);
 }
 

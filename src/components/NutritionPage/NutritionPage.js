@@ -3,7 +3,7 @@ import '../NutritionPage/NutritionPage.css';
 import { connect } from 'react-redux';
 import AddFood from '../AddFood/AddFood';
 import ProgressBar from '../ProgressBar/ProgressBar';
-import { Add, Settings } from '@material-ui/icons/';
+import { Add, Settings as SettingsIcon } from '@material-ui/icons/';
 
 const date = new Date().getMonth() + 1 + "-" + new Date().getDate() + "-" + new Date().getFullYear();
 
@@ -12,17 +12,17 @@ class NutritionPage extends Component {
   state = {
     date: date,
     showAddFood: false,
+    showSettings: false,
   }
 
   componentDidMount() {
-    console.log('nutrition page mounted!', this.props.calorieGoal)
+    console.log('nutrition page mounted!', this.props.calorieTotal)
     this.props.dispatch({
-      type: 'FETCH_NUTRITION',
+      type: 'FETCH_GOALS',
       // payload: date
     })
-    this.props.dispatch({
-      type: 'FETCH_FOOD',
-    })
+    this.props.dispatch({ type: 'FETCH_FOOD' })
+    this.props.dispatch({ type: 'FETCH_TOTALS' })
     console.log('NutritionPage mounted!')
   }
 
@@ -37,36 +37,48 @@ class NutritionPage extends Component {
       <div className="nutritionPage">
         <div className="dataChart">
           <p>Today</p>
-          <ProgressBar name="Calories"
+          <ProgressBar
+            name="Calories"
             unit=""
             goal={this.props.calorieGoal}
-            total={this.props.calorieTotal} 
+            total={this.props.calorieTotal}
           />
-           <ProgressBar name="Protein"
+          <ProgressBar
+            name="Protein"
             unit="g"
             goal={this.props.proteinGoal}
-            total={this.props.proteinTotal} 
+            total={this.props.proteinTotal}
           />
-           <ProgressBar name="Carbs"
+          <ProgressBar
+            name="Carbs"
             unit="g"
             goal={this.props.carbsGoal}
-            total={this.props.carbsTotal} 
+            total={this.props.carbsTotal}
           />
-           <ProgressBar name="Fat"
+          <ProgressBar
+            name="Fat"
             unit="g"
             goal={this.props.fatGoal}
-            total={this.props.fatTotal} 
+            total={this.props.fatTotal}
           />
           <button onClick={this.handleClick}><Add /></button>
-          <button><Settings/></button>
+          <button><SettingsIcon /></button>
         </div>
-        
+
         <div>
           {this.state.showAddFood === true ? (<AddFood date={this.state.date} />) : null}
         </div>
 
         <div>
-          {JSON.stringify(this.props.food)}
+          {/* {this.state.showAddFood === true ? (<Settings date={this.state.date} />) : null} */}
+        </div>
+
+        <div>
+          {this.props.food.map((item) => {
+            return (
+              <p>{item.description} {item.calories}</p>
+            )
+          })}
         </div>
 
       </div>
@@ -76,15 +88,15 @@ class NutritionPage extends Component {
 
 const mapStateToProps = state => ({
   nutrition: state.nutrition,
-  calorieGoal: state.nutrition.calorie_goal,
-  calorieTotal: state.nutrition.calorie_total,
-  proteinGoal: state.nutrition.protein_goal,
-  proteinTotal: state.nutrition.protein_total,
-  carbsGoal: state.nutrition.carbs_goal,
-  carbsTotal: state.nutrition.carbs_total,
-  fatGoal: state.nutrition.fat_goal,
-  fatTotal: state.nutrition.fat_total,
-  food: state.food
+  calorieGoal: state.nutrition.goalsReducer.calorieGoal,
+  calorieTotal: state.nutrition.totalsReducer.calorieTotal,
+  proteinGoal: state.nutrition.goalsReducer.proteinGoal,
+  proteinTotal: state.nutrition.totalsReducer.proteinTotal,
+  carbsGoal: state.nutrition.goalsReducer.carbsGoal,
+  carbsTotal: state.nutrition.totalsReducer.carbsTotal,
+  fatGoal: state.nutrition.goalsReducer.fatGoal,
+  fatTotal: state.nutrition.totalsReducer.fatTotal,
+  food: state.nutrition.foodReducer
 });
 
 export default connect(mapStateToProps)(NutritionPage);
