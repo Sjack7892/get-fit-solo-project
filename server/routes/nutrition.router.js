@@ -28,7 +28,7 @@ router.get('/totals/:date', (req, res) => {
     const queryString = `
     SELECT SUM("calories") as "calorie_total", SUM("protein") as "protein_total", 
     SUM("carbs") as "carbs_total" , SUM("fat") as "fat_total" FROM "nutrition"
-    WHERE "user_id" = '${id}';
+    WHERE "user_id" = '${id}' AND "date" = '${date}';
     ;`;
     pool.query(queryString)
         .then(result => {
@@ -45,7 +45,9 @@ router.get('/food/:date', (req, res) => {
     const id = req.user.id;
     const date = req.params.date
     const queryString = `
-    SELECT * FROM "nutrition" WHERE "date" = '${date}' AND "user_id" = '${id}'
+    SELECT * FROM "nutrition" 
+    WHERE "date" = '${date}' AND "user_id" = '${id}'
+    ORDER BY "id"
     ;`;
     pool.query(queryString)
     .then(result => {
