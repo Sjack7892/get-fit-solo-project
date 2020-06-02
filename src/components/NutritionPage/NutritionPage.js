@@ -9,7 +9,8 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
-// import { TableRow } from '@material-ui/core';
+import NutritionSettings from '../NutritionSettings/NutritionSettings'
+import { TableRow } from '@material-ui/core';
 // import { Edit as EditIcon, Delete as DeleteIcon } from '@material-ui/icons';
 
 const date = new Date().getMonth() + 1 + "-" + new Date().getDate() + "-" + new Date().getFullYear();
@@ -45,11 +46,11 @@ class NutritionPage extends Component {
           [property]: !this.state.showAddFood
         })
         console.log(this.state.showAddFood)
-      } else if (property === 'showEditFood') {
+      } else if (property === 'showSettings') {
         this.setState({
-          [property]: !this.state.showEditFood
+          [property]: !this.state.showSettings
         })
-        console.log(this.state.showEditFood)
+        console.log(this.state.showSettings)
       }
      
       // case 'showEditFood':
@@ -104,19 +105,22 @@ class NutritionPage extends Component {
             total={this.props.fatTotal}
           />
           <button onClick={() => this.showForm('showAddFood')}><AddIcon /></button>
-          <button><SettingsIcon /></button>
+          <button onClick={() => this.showForm('showSettings')}><SettingsIcon /></button>
         </div>
 
         <div>
           {this.state.showAddFood === true ? (<AddFood date={this.state.date} showForm={this.showForm}/>) : null}
         </div>
 
-        {/* <div>
-          {this.state.showEditFood === true ? (<EditFood date={this.state.date} />) : null}
-        </div> */}
+        <div>
+          {this.state.showSettings === true ? (<NutritionSettings showForm={this.showForm}/>) : null}
+        </div>
 
         <Table>
           <TableHead>
+            <TableRow>
+
+          
             <TableCell>Description</TableCell>
             <TableCell>Calories</TableCell>
             <TableCell>Protein</TableCell>
@@ -124,6 +128,7 @@ class NutritionPage extends Component {
             <TableCell>Fat</TableCell>
             <TableCell></TableCell>
             <TableCell></TableCell>
+            </TableRow>
           </TableHead>
           <TableBody>
           {this.props.food.map((food) => {

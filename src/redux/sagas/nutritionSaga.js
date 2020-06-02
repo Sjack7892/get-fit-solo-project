@@ -100,6 +100,23 @@ function* putFood(action) {
     }
 }
 
+function* putGoals(action) {
+    console.log('in put goals!', action.payload);
+    try {
+        const response = yield axios.put(`/api/nutrition/goals`, action.payload);
+        console.log('put goals response!', response.data);
+        yield put({
+            type: 'FETCH_GOALS',
+        })
+        // yield put({
+        //     type: 'FETCH_FOOD',
+        //     payload: date
+        // })
+    } catch (error) {
+        console.log('Error in putGoals:', error);
+    }
+}
+
 function* nutritionSaga() {
     yield takeEvery('POST_NUTRITION', postNutrition);
     yield takeEvery('FETCH_GOALS', fetchGoals);
@@ -107,6 +124,7 @@ function* nutritionSaga() {
     yield takeEvery('FETCH_FOOD', fetchFood);
     yield takeEvery('DELETE_FOOD', deleteFood);
     yield takeEvery('PUT_FOOD', putFood);
+    yield takeEvery('PUT_GOALS', putGoals);
 }
 
 export default nutritionSaga;

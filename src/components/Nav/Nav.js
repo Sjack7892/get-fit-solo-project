@@ -40,12 +40,12 @@ const Nav = (props) => (
         </li>
         {/* // )} */}
         <li>
-          <Link className="nav-link" >
+          {/* <Link className="nav-link" >
             <div>
               Workout
                   <FitnessCenterIcon className="icon" />
             </div>
-          </Link>
+          </Link> */}
         </li>
         {/* <li>
           <Link onClick={props.navChangeStatus} className="nav-link" to="/about">

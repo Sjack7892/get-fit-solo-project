@@ -5,7 +5,13 @@ import './ProgressBar.css';
 function ProgressBar(props) {
     const total = props.total;
     const goal = props.goal;
-    const progressBarTotal = total / goal * 200;
+    // let progressBarTotal = total / goal * 200;
+    let progressBarTotal;
+    {if (isNaN(total / goal * 200)) {
+        progressBarTotal = 0;
+    } else {
+        progressBarTotal = total / goal * 200;
+    }   }
     const unit = props.unit;
 
     return (

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './AddFood.css';
-import { InputLabel, Input, TextField } from '@material-ui/core';
+import './NutritionSettings.css';
+import { TextField } from '@material-ui/core';
 
-class AddFood extends Component {
+class NutritionSettings extends Component {
 
     state = {
-        date: this.props.date,
-        goalCalories: '',
+        calories: '',
         protein: '',
         carbs: '',
         fat: '',
@@ -17,87 +16,71 @@ class AddFood extends Component {
         this.setState({
             [propertyName]: event.target.value,
         });
+        
     }
 
     addFood = (event) => {
         console.log(this.state)
         event.preventDefault();
         this.props.dispatch({
-            type: 'POST_NUTRITION',
+            type: 'PUT_GOALS',
             payload: this.state
         })
         console.log(this.state)
-
+        // this.setState({
+        //     description: '',
+        //     calories: '',
+        //     protein: '',
+        //     carbs: '',
+        //     fat: '',
+        // })
+        this.props.showForm('showSettings')
+        
     }
 
     render() {
         return (
-            <div className="addFoodForm">
+            <div className="settingsForm">
+                    <h1>Settings</h1>
                 <form onSubmit={this.addFood}>
-                    <InputLabel>
-                        Description:
-                    </InputLabel>
-                    <Input
-                        type="text"
-                        variant="outlined"
-                        name="name"
-                        value={this.state.description}
-                        onChange={this.handleInputChangeFor('description')}
-                    />
-                       {/* <TextField
-          id="outlined-number"
-          label="Number"
-          type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="outlined"
-        /> */}
-
-                    <br />
-                    <InputLabel>
-                        Calories:
-                    </InputLabel>
-                    <Input
+                    <TextField
+                        label="calories"
                         type="number"
+                        variant="outlined"
                         name="name"
                         value={this.state.calories}
                         onChange={this.handleInputChangeFor('calories')}
                     />
-
                     <br />
-                    <InputLabel>
-                        Protein:
-                    </InputLabel>
-                    <Input
+                    <br />
+                    <TextField
+                        label="protein (g)"
                         type="number"
+                        variant="outlined"
                         name="name"
                         value={this.state.protein}
                         onChange={this.handleInputChangeFor('protein')}
                     />
-
                     <br />
-                    <InputLabel>
-                        Carbs:
-                    </InputLabel>
-                    <Input
+                    <br />
+                    <TextField
+                        label="carbs (g)"
                         type="number"
+                        variant="outlined"
                         name="name"
                         value={this.state.carbs}
                         onChange={this.handleInputChangeFor('carbs')}
                     />
-
                     <br />
-                    <InputLabel>
-                        Fat:
-                    </InputLabel>
-                    <Input
+                    <br />
+                    <TextField
+                        label="fat (g)"
                         type="number"
+                        variant="outlined"
                         name="name"
                         value={this.state.fat}
                         onChange={this.handleInputChangeFor('fat')}
                     />
-
                     <br />
                     <input type="submit" value="Submit" />
                 </form>
@@ -106,4 +89,4 @@ class AddFood extends Component {
     }
 }
 
-export default connect()(Settings);
+export default connect()(NutritionSettings);

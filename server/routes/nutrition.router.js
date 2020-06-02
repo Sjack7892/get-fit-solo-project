@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 
-router.get('/goals/', (req, res) => {
+router.get('/goals', (req, res) => {
     console.log('hello from goals saga');
     const id = req.user.id;
     const queryString = `
@@ -15,6 +15,23 @@ router.get('/goals/', (req, res) => {
         .then(result => {
             console.log(result.rows);
             res.send(result.rows)
+        }).catch(error => {
+            console.log(error);
+            res.sendStatus(500);
+        })
+});
+
+router.put('/goals', (req, res) => {
+    console.log('hello from goals saga', req.body, req.user.id);
+    const id = req.user.id;
+    const queryString = `
+    UPDATE "user"
+    SET "calorie_goal" = $1, "protein_goal" = $2, "carbs_goal" = $3, "fat_goal" = $4 
+    WHERE "id" = '${id}'
+    ;`;
+    pool.query(queryString, [req.body.calories, req.body.protein, req.body.carbs, req.body.fat])
+        .then(result => {
+            res.sendStatus(201)
         }).catch(error => {
             console.log(error);
             res.sendStatus(500);

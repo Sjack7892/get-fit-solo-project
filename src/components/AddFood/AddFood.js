@@ -43,6 +43,7 @@ class AddFood extends Component {
     render() {
         return (
             <div className="addFoodForm">
+                     <h1>Add Food</h1>
                 <form onSubmit={this.addFood}>
                     {/* <InputLabel>
                         Description
@@ -58,6 +59,7 @@ class AddFood extends Component {
    
 
                     <br />
+                    <br />
                     {/* <InputLabel>
                         Calories
                     </InputLabel> */}
@@ -70,6 +72,7 @@ class AddFood extends Component {
                         onChange={this.handleInputChangeFor('calories')}
                     />
 
+                    <br />
                     <br />
                     {/* <InputLabel>
                         Protein (g)
@@ -84,6 +87,7 @@ class AddFood extends Component {
                     />
 
                     <br />
+                    <br />
                     {/* <InputLabel>
                         Carbs (g)
                     </InputLabel> */}
@@ -96,6 +100,7 @@ class AddFood extends Component {
                         onChange={this.handleInputChangeFor('carbs')}
                     />
 
+                    <br />
                     <br />
                     {/* <InputLabel>
                         Fat (g)
