@@ -14,7 +14,8 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import NutritionPage from '../NutritionPage/NutritionPage.js';
+import NutritionPage from '../NutritionPage/NutritionPage';
+import WorkoutPage from '../WorkoutPage/WorkoutPage';
 
 // import { GiHamburgerMenu } from 'react-icons/gi';
 import {FaHamburger} from 'react-icons/fa';
@@ -90,6 +91,11 @@ class App extends Component {
                 exact
                 path="/nutrition"
                 component={NutritionPage}
+              />
+                <ProtectedRoute
+                exact
+                path="/workout"
+                component={WorkoutPage}
               />
 
               {/* If none of the other routes matched, we will show a 404. */}

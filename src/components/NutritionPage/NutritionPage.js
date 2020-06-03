@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../NutritionPage/NutritionPage.css';
+import './NutritionPage.css';
 import { connect } from 'react-redux';
 import AddFood from '../AddFood/AddFood';
 import ProgressBar from '../ProgressBar/ProgressBar';
@@ -11,7 +11,9 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import NutritionSettings from '../NutritionSettings/NutritionSettings'
 import { TableRow } from '@material-ui/core';
-// import { Edit as EditIcon, Delete as DeleteIcon } from '@material-ui/icons';
+import moment from 'moment';
+ 
+
 
 const date = new Date().getMonth() + 1 + "-" + new Date().getDate() + "-" + new Date().getFullYear();
 
@@ -24,62 +26,36 @@ class NutritionPage extends Component {
   }
 
   componentDidMount() {
-    console.log('nutrition page mounted!', this.props.calorieTotal)
-    this.props.dispatch({
-      type: 'FETCH_GOALS',
-      // payload: date
-    })
+    this.props.dispatch({ type: 'FETCH_GOALS' })
     this.props.dispatch({ type: 'FETCH_FOOD' })
     this.props.dispatch({ type: 'FETCH_TOTALS' })
-    console.log('NutritionPage mounted!')
   }
 
   deleteFood = (id) => {
     this.props.dispatch({ type: 'DELETE_FOOD', payload: id })
-    }
-  
+  }
+
 
   showForm = (property) => {
-    
-      if (property === 'showAddFood'){
-        this.setState({
-          [property]: !this.state.showAddFood
-        })
-        console.log(this.state.showAddFood)
-      } else if (property === 'showSettings') {
-        this.setState({
-          [property]: !this.state.showSettings
-        })
-        console.log(this.state.showSettings)
-      }
-     
-      // case 'showEditFood':
-      //   this.setState({
-      //     [property]: !this.state.showEditFood
-      //   })
-      //   console.log(this.state.showEditFood)
+    if (property === 'showAddFood') {
+      this.setState({
+        [property]: !this.state.showAddFood
+      })
+      console.log(this.state.showAddFood)
+    } else if (property === 'showSettings') {
+      this.setState({
+        [property]: !this.state.showSettings
+      })
+      console.log(this.state.showSettings)
     }
-
-
-  // showForm = (property) => {
-  //   switch (property) {
-  //     case 'showAddFood':
-  //       this.setState({
-  //         showAddFood: !this.state.showAddFood
-  //       })
-  //       console.log(this.state.showAddFood)
-  //     case 'showEditFood':
-  //       this.setState({
-  //         [property]: !this.state.showEditFood
-  //       })
-  //   }
-  // }
+  }
 
   render() {
     return (
       <div className="nutritionPage">
         <div className="dataChart">
           <p>Today</p>
+          <p>{moment(new Date()).format('MMMM Do')}</p>
           <ProgressBar
             name="Calories"
             unit=""
@@ -109,53 +85,33 @@ class NutritionPage extends Component {
         </div>
 
         <div>
-          {this.state.showAddFood === true ? (<AddFood date={this.state.date} showForm={this.showForm}/>) : null}
+          {this.state.showAddFood === true ? (<AddFood date={this.state.date} showForm={this.showForm} />) : null}
         </div>
 
         <div>
-          {this.state.showSettings === true ? (<NutritionSettings showForm={this.showForm}/>) : null}
+          {this.state.showSettings === true ? (<NutritionSettings showForm={this.showForm} />) : null}
         </div>
 
-        <Table>
+        <Table style={{ width: 500 }}>
           <TableHead>
             <TableRow>
-
-          
-            <TableCell>Description</TableCell>
-            <TableCell>Calories</TableCell>
-            <TableCell>Protein</TableCell>
-            <TableCell>Carbs</TableCell>
-            <TableCell>Fat</TableCell>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Calories</TableCell>
+              <TableCell>Protein (g)</TableCell>
+              <TableCell>Carbs (g)</TableCell>
+              <TableCell>Fat (g)</TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-          {this.props.food.map((food) => {
-            return (
-              // <TableRow key={food.id}>
-              //   <TableCell>{food.description}</TableCell>
-              //   <TableCell>{food.calories}</TableCell>
-              //   <TableCell>{food.protein}</TableCell>
-              //   <TableCell>{food.carbs}</TableCell>
-              //   <TableCell>{food.fat}</TableCell>
-              //   <TableCell><button onClick={() => this.showForm('showEditFood')}><EditIcon /></button></TableCell>
-              //   <TableCell><button onClick={() => this.edit('delete', food.id)}><DeleteIcon /></button></TableCell>
-                
-        
-              // <div key={food.id} >
-                <FoodItem key={food.id} food={food} deleteFood={this.deleteFood} dispatch={this.props.dispatch}/>
-              // </div>
-              // </TableRow>
-            )
-          })}
+            {this.props.food.map((food) => {
+              return (
+                <FoodItem key={food.id} food={food} deleteFood={this.deleteFood} dispatch={this.props.dispatch} />
+              )
+            })}
           </TableBody>
         </Table>
-        <div>
-      
-         
-        </div>
-
       </div>
     )
   }

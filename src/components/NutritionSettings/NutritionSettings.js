@@ -20,22 +20,12 @@ class NutritionSettings extends Component {
     }
 
     addFood = (event) => {
-        console.log(this.state)
         event.preventDefault();
         this.props.dispatch({
             type: 'PUT_GOALS',
             payload: this.state
         })
-        console.log(this.state)
-        // this.setState({
-        //     description: '',
-        //     calories: '',
-        //     protein: '',
-        //     carbs: '',
-        //     fat: '',
-        // })
-        this.props.showForm('showSettings')
-        
+        this.props.showForm('showSettings')   
     }
 
     render() {
@@ -51,8 +41,8 @@ class NutritionSettings extends Component {
                         value={this.state.calories}
                         onChange={this.handleInputChangeFor('calories')}
                     />
-                    <br />
-                    <br />
+                    <br/>
+                    <br/>
                     <TextField
                         label="protein (g)"
                         type="number"
@@ -61,8 +51,8 @@ class NutritionSettings extends Component {
                         value={this.state.protein}
                         onChange={this.handleInputChangeFor('protein')}
                     />
-                    <br />
-                    <br />
+                    <br/>
+                    <br/>
                     <TextField
                         label="carbs (g)"
                         type="number"
@@ -71,8 +61,8 @@ class NutritionSettings extends Component {
                         value={this.state.carbs}
                         onChange={this.handleInputChangeFor('carbs')}
                     />
-                    <br />
-                    <br />
+                    <br/>
+                    <br/>
                     <TextField
                         label="fat (g)"
                         type="number"
@@ -81,7 +71,7 @@ class NutritionSettings extends Component {
                         value={this.state.fat}
                         onChange={this.handleInputChangeFor('fat')}
                     />
-                    <br />
+                    <br/>
                     <input type="submit" value="Submit" />
                 </form>
             </div>

@@ -18,7 +18,6 @@ class FoodItem extends Component {
         this.setState({
             [propertyName]: event.target.value,
         });
-
     }
 
     put = () => {
@@ -39,15 +38,14 @@ class FoodItem extends Component {
 
     render() {
         return (
-
             <TableRow>
                 {this.state.editMode === true ?
                     <>
-                        <TableCell><input onChange={this.handleInputChangeFor('description')} type="text" value={this.state.description}></input></TableCell>
-                        <TableCell><input onChange={this.handleInputChangeFor('calories')} type="text" value={this.state.calories}></input></TableCell>
-                        <TableCell><input onChange={this.handleInputChangeFor('protein')} type="text" value={this.state.protein}></input></TableCell>
-                        <TableCell><input onChange={this.handleInputChangeFor('carbs')} type="text" value={this.state.carbs}></input></TableCell>
-                        <TableCell><input onChange={this.handleInputChangeFor('fat')} type="text" value={this.state.fat}></input></TableCell>
+                        <TableCell><input style={{ width: 50, padding: 0, margin: 0, height: 20 }} onChange={this.handleInputChangeFor('description')} type="text" value={this.state.description}></input></TableCell>
+                        <TableCell><input style={{ width: 30, padding: 0, margin: 0, }} onChange={this.handleInputChangeFor('calories')} type="text" value={this.state.calories}></input></TableCell>
+                        <TableCell><input style={{ width: 18, padding: 0, margin: 0, }} onChange={this.handleInputChangeFor('protein')} type="text" value={this.state.protein}></input></TableCell>
+                        <TableCell><input style={{ width: 18, padding: 0, margin: 0, }} onChange={this.handleInputChangeFor('carbs')} type="text" value={this.state.carbs}></input></TableCell>
+                        <TableCell><input style={{ width: 18, padding: 0, margin: 0, }} onChange={this.handleInputChangeFor('fat')} type="text" value={this.state.fat}></input></TableCell>
                         <TableCell><button onClick={this.put}><CheckIcon /></button></TableCell>
                     </>
                     :
@@ -61,7 +59,6 @@ class FoodItem extends Component {
                     </>}
                 <TableCell><button onClick={() => this.props.deleteFood(this.props.food.id)}><DeleteIcon /></button></TableCell>
             </TableRow>
-
         )
     }
 };

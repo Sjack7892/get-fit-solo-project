@@ -83,5 +83,5 @@ const totalsReducer = (state = {}, action) => {
 export default combineReducers({
     goalsReducer,
     totalsReducer,
-    foodReducer,
+    foodReducer
 });
