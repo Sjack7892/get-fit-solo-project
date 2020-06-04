@@ -5,6 +5,18 @@ const workoutReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_WORKOUTS':
             return action.payload
+        // case 'SET_WORKOUT':
+        //     return action.payload
+        default:
+            return state;
+    }
+};
+
+const currentWorkoutReducer = (state = [], action) => {
+    console.log(action.payload)
+    switch (action.type) {
+        case 'SET_WORKOUT':
+            return action.payload
         default:
             return state;
     }
@@ -12,5 +24,5 @@ const workoutReducer = (state = [], action) => {
 
 export default combineReducers({
     workoutReducer,
-    // totalsReducer,
+    currentWorkoutReducer
 });

@@ -9,8 +9,8 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
-import NutritionSettings from '../NutritionSettings/NutritionSettings'
 import { TableRow } from '@material-ui/core';
+import NutritionSettings from '../NutritionSettings/NutritionSettings'
 import moment from 'moment';
  
 

@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import './WorkoutPage.css';
 import { connect } from 'react-redux';
-// import AddFood from '../AddFood/AddFood';
-// import ProgressBar from '../ProgressBar/ProgressBar';
-// import FoodItem from '../FoodItem/FoodItem';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import { TableRow } from '@material-ui/core';
+import moment from 'moment';
+import AddWorkout from '../AddWorkout/AddWorkout';
 // import { Add as AddIcon, Settings as SettingsIcon } from '@material-ui/icons';
-// import Table from '@material-ui/core/Table';
-// import TableBody from '@material-ui/core/TableBody';
-// import TableCell from '@material-ui/core/TableCell';
-// import TableHead from '@material-ui/core/TableHead';
-// import NutritionSettings from '../NutritionSettings/NutritionSettings'
-// import { TableRow } from '@material-ui/core';
 
 
 const date = new Date().getMonth() + 1 + "-" + new Date().getDate() + "-" + new Date().getFullYear();
@@ -20,146 +18,108 @@ class WorkoutPage extends Component {
     state = {
         date: date,
         search: '',
-        workout: []
-        // showAddFood: false,
-        // showSettings: false,
+        workout: '',
+        showAddWorkout: false,
+    }
+
+    showForm = (property) => {
+        if (property === 'showAddWorkout') {
+            this.setState({
+                [property]: !this.state.showAddWorkout
+            })
+        }
     }
 
     handleInputChange = (event) => {
         this.setState({
             search: this.search.value
-          }, () => {
+        }, () => {
             if (this.state.search && this.state.search.length > 1) {
-              if (this.state.search.length % 2 === 0) {
-                this.props.dispatch({ type: 'FETCH_WORKOUTS', payload: this.state.search })
-              }
-            } 
-          })
-        // this.props.dispatch({ type: 'FETCH_WORKOUTS', payload: this.state.search })
-      }
+                if (this.state.search.length % 2 === 0) {
+                    this.props.dispatch({ type: 'FETCH_WORKOUTS', payload: this.state.search })
+                }
+            }
+        })
+    }
 
     componentDidMount() {
         console.log(this.state.workout)
-        // this.props.dispatch({ type: 'FETCH_WORKOUTS', payload: this.state.search })
-        // this.props.dispatch({ type: 'FETCH_FOOD' })
-        // this.props.dispatch({ type: 'FETCH_TOTALS' })
+        this.props.dispatch({
+            type: 'FETCH_WORKOUT',
+            payload: this.state.date
+        })
     }
 
-      addWorkout = (workout) => {
-          console.log('button clicked')
-          this.state.workout.push(workout);
-          console.log(this.state.workout)
-      }
+    addWorkout = (workout) => {
+        // this.props.dispatch({ type: 'POST_WORKOUT', payload: workout })
+        this.setState({ search: '', showAddWorkout: true })
+        this.setState({ workout: workout })
+        // this.state.workout.push(workout);
+    }
 
-
-    //   showForm = (property) => {
-    //     if (property === 'showAddFood') {
-    //       this.setState({
-    //         [property]: !this.state.showAddFood
-    //       })
-    //       console.log(this.state.showAddFood)
-    //     } else if (property === 'showSettings') {
-    //       this.setState({
-    //         [property]: !this.state.showSettings
-    //       })
-    //       console.log(this.state.showSettings)
-    //     }
-    //   }
 
     render() {
         return (
-            <div>
-                <h1>Workout Page! {JSON.stringify(this.state.workout)}</h1>
-                <input 
-                placeholder="search workouts..."
-                // value={this.state.query}
-                ref={input => this.search = input}
-                onChange={this.handleInputChange}
+            <div className="workoutPage">
+                <p>{moment(new Date()).format('MMMM Do')}</p>
+                <h1>Log a workout</h1>
+                <input
+                    placeholder="search workouts..."
+                    ref={input => this.search = input}
+                    onChange={this.handleInputChange}
+                    value={this.state.search}
                 ></input>
                 <ul>
                     {this.state.search !== '' ?
-                    this.props.workouts.map((workout) => {
-                        return (
-                            <div key={workout.value}>
-                            <p>{workout.value}</p>
-                            <button onClick={() => this.addWorkout(`${workout.value}`)}>Add</button>
-                            </div> 
-                        )
-                        
-                    }) : null }
-                    </ul>
+                        this.props.workouts.map((workout) => {
+                            return (
+                                <div key={workout.value}>
+                                    <p>{workout.value}</p>
+                                    <button onClick={() => this.addWorkout(`${workout.value}`)}>Add</button>
+                                </div>
+                            )
+                        }) : null}
+                </ul>
+
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Exercise</TableCell>
+                            <TableCell>Previous</TableCell>
+                            <TableCell>Reps</TableCell>
+                            <TableCell>Weight</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+
+                        {this.props.currentWorkout.map((workout) => {
+                                return (
+                                    <TableRow>
+                                    <TableCell>{workout.type}</TableCell>
+                                    <TableCell></TableCell>
+                                    <TableCell>{workout.reps}</TableCell>
+                                    <TableCell>{workout.weight}</TableCell>
+                                    <TableCell></TableCell>
+                                    </TableRow>  
+                                )
+                            })}
+
+                    </TableBody>
+                </Table>
+                <h3>{JSON.stringify(this.props.currentWorkout)}</h3>
+                <div>
+                    {this.state.showAddWorkout === true ? (<AddWorkout workout={this.state.workout} date={this.state.date} showForm={this.showForm} />) : null}
+                </div>
 
             </div>
 
         )
-
-        // return (
-        //   <div className="nutritionPage">
-        //     <div className="dataChart">
-        //       <p>Today</p>
-        //       <ProgressBar
-        //         name="Calories"
-        //         unit=""
-        //         goal={this.props.calorieGoal}
-        //         total={this.props.calorieTotal}
-        //       />
-        //       <ProgressBar
-        //         name="Protein"
-        //         unit="g"
-        //         goal={this.props.proteinGoal}
-        //         total={this.props.proteinTotal}
-        //       />
-        //       <ProgressBar
-        //         name="Carbs"
-        //         unit="g"
-        //         goal={this.props.carbsGoal}
-        //         total={this.props.carbsTotal}
-        //       />
-        //       <ProgressBar
-        //         name="Fat"
-        //         unit="g"
-        //         goal={this.props.fatGoal}
-        //         total={this.props.fatTotal}
-        //       />
-        //       <button onClick={() => this.showForm('showAddFood')}><AddIcon /></button>
-        //       <button onClick={() => this.showForm('showSettings')}><SettingsIcon /></button>
-        //     </div>
-
-        //     <div>
-        //       {this.state.showAddFood === true ? (<AddFood date={this.state.date} showForm={this.showForm} />) : null}
-        //     </div>
-
-        //     <div>
-        //       {this.state.showSettings === true ? (<NutritionSettings showForm={this.showForm} />) : null}
-        //     </div>
-
-        //     <Table style={{ width: 500 }}>
-        //       <TableHead>
-        //         <TableRow>
-        //           <TableCell>Description</TableCell>
-        //           <TableCell>Calories</TableCell>
-        //           <TableCell>Protein (g)</TableCell>
-        //           <TableCell>Carbs (g)</TableCell>
-        //           <TableCell>Fat (g)</TableCell>
-        //           <TableCell></TableCell>
-        //           <TableCell></TableCell>
-        //         </TableRow>
-        //       </TableHead>
-        //       <TableBody>
-        //         {this.props.food.map((food) => {
-        //           return (
-        //             <FoodItem key={food.id} food={food} deleteFood={this.deleteFood} dispatch={this.props.dispatch} />
-        //           )
-        //         })}
-        //       </TableBody>
-        //     </Table>
-        //   </div>
-        // )
     }
 };
 
 const mapStateToProps = state => ({
-    workouts: state.workouts.workoutReducer
+    workouts: state.workouts.workoutReducer,
+    currentWorkout: state.workouts.currentWorkoutReducer
 });
 
 export default connect(mapStateToProps)(WorkoutPage);

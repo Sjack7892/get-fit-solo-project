@@ -10,10 +10,6 @@ function* fetchWorkouts(action) {
     try {
         const response = yield axios.get(`/api/workout/${search}`);
         console.log(response.data.suggestions);
-        // response.data.suggestions.map((result) => {
-        //     workouts.push(result.value);
-        //     return;
-        // })
         console.log('WORKOUTS ARRAY', workouts)
         yield put({
             type: 'SET_WORKOUTS',
@@ -25,8 +21,35 @@ function* fetchWorkouts(action) {
     }
 }
 
+function* fetchWorkout(action) {
+    console.log('in fetch workout!');
+    const date = action.payload
+    try {
+        const response = yield axios.get(`/api/workout/current/${date}`);
+        console.log(response.data);
+        yield put({
+            type: 'SET_WORKOUT',
+            payload: response.data
+        });
+
+    } catch (error) {
+        console.log('Error in fetchWorkout:', error);
+    }
+}
+
+function* postWorkouts(action) {
+    console.log('in post workouts!');
+    try {
+        yield axios.post(`/api/workout`, action.payload);
+    } catch (error) {
+        console.log('Error in postWorkouts:', error);
+    }
+}
+
 function* workoutSaga() {
     yield takeEvery('FETCH_WORKOUTS', fetchWorkouts);
+    yield takeEvery('FETCH_WORKOUT', fetchWorkout);
+    yield takeEvery('POST_WORKOUT', postWorkouts);
 }
 
 export default workoutSaga;
