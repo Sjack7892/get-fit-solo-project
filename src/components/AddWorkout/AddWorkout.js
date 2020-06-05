@@ -19,6 +19,13 @@ class AddWorkout extends Component {
         
     }
 
+    componentDidMount() {
+        this.props.dispatch({
+            type: 'FETCH_PREVIOUS',
+            payload: this.props.workout
+        })
+    }
+
     addWorkout = (event) => {
         event.preventDefault();
         this.props.dispatch({
@@ -29,6 +36,7 @@ class AddWorkout extends Component {
             type: 'FETCH_WORKOUT',
             payload: this.state.date
         })
+      
         this.props.showForm('showAddWorkout')
     }
 
@@ -37,6 +45,7 @@ class AddWorkout extends Component {
             <div className="addWorkoutForm">
                      <h1>Add Workout</h1>
                      <h3>{this.props.workout}</h3>
+                     <p>Previous: {this.props.previous.reps}x{this.props.previous.weight}lbs.</p>
                 <form onSubmit={this.addWorkout}>
                     <br />
                     <br />

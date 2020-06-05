@@ -22,7 +22,22 @@ const currentWorkoutReducer = (state = [], action) => {
     }
 };
 
+const previousWorkoutReducer = (state = [], action) => {
+    console.log(action.payload)
+    switch (action.type) {
+        case 'SET_PREVIOUS':
+            if (action.payload == null) {
+                return {reps: 0, weight: 0};
+            } else {
+                return action.payload
+            }
+        default:
+            return state;
+    }
+};
+
 export default combineReducers({
     workoutReducer,
-    currentWorkoutReducer
+    currentWorkoutReducer,
+    previousWorkoutReducer
 });

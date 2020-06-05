@@ -54,6 +54,7 @@ class WorkoutPage extends Component {
         // this.props.dispatch({ type: 'POST_WORKOUT', payload: workout })
         this.setState({ search: '', showAddWorkout: true })
         this.setState({ workout: workout })
+    
         // this.state.workout.push(workout);
     }
 
@@ -85,7 +86,6 @@ class WorkoutPage extends Component {
                     <TableHead>
                         <TableRow>
                             <TableCell>Exercise</TableCell>
-                            <TableCell>Previous</TableCell>
                             <TableCell>Reps</TableCell>
                             <TableCell>Weight</TableCell>
                         </TableRow>
@@ -94,9 +94,8 @@ class WorkoutPage extends Component {
 
                         {this.props.currentWorkout.map((workout) => {
                                 return (
-                                    <TableRow>
+                                    <TableRow key={workout.id}>
                                     <TableCell>{workout.type}</TableCell>
-                                    <TableCell></TableCell>
                                     <TableCell>{workout.reps}</TableCell>
                                     <TableCell>{workout.weight}</TableCell>
                                     <TableCell></TableCell>
@@ -106,9 +105,8 @@ class WorkoutPage extends Component {
 
                     </TableBody>
                 </Table>
-                <h3>{JSON.stringify(this.props.currentWorkout)}</h3>
                 <div>
-                    {this.state.showAddWorkout === true ? (<AddWorkout workout={this.state.workout} date={this.state.date} showForm={this.showForm} />) : null}
+                    {this.state.showAddWorkout === true ? (<AddWorkout previous={this.props.previousWorkout} workout={this.state.workout} date={this.state.date} showForm={this.showForm} />) : null}
                 </div>
 
             </div>
@@ -119,7 +117,8 @@ class WorkoutPage extends Component {
 
 const mapStateToProps = state => ({
     workouts: state.workouts.workoutReducer,
-    currentWorkout: state.workouts.currentWorkoutReducer
+    currentWorkout: state.workouts.currentWorkoutReducer,
+    previousWorkout: state.workouts.previousWorkoutReducer
 });
 
 export default connect(mapStateToProps)(WorkoutPage);

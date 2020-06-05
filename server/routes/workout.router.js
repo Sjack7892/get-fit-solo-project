@@ -37,6 +37,26 @@ router.get('/:search', (req, res) => {
     })
 });
 
+router.get('/previous/:type', (req, res) => {
+    console.log('hello from workout saga');
+    const id = req.user.id;
+    const type = req.params.type
+    console.log(type);
+    const queryString = `
+    SELECT "reps", "weight" FROM "workouts" 
+    WHERE "type" = '${type}' AND "user_id" = '${id}'
+    ORDER BY "id" DESC LIMIT 1
+    ;`;
+    pool.query(queryString)
+    .then(result => {
+        console.log(result.rows);
+        res.send(result.rows)
+    }).catch(error => {
+        console.log(error);
+        res.sendStatus(500);
+    })
+});
+
 router.post('/', (req, res) => {
     console.log('hello from workout saga', req.body)
     const id = req.user.id;
