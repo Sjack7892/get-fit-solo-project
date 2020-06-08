@@ -9,7 +9,7 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
-import { TableRow } from '@material-ui/core';
+import { TableRow, Button } from '@material-ui/core';
 import NutritionSettings from '../NutritionSettings/NutritionSettings'
 import moment from 'moment';
  
@@ -53,9 +53,10 @@ class NutritionPage extends Component {
   render() {
     return (
       <div className="nutritionPage">
+        
         <div className="dataChart">
-          <p>Today</p>
-          <p>{moment(new Date()).format('MMMM Do')}</p>
+          {/* <p>Today</p> */}
+          {/* <p>{moment(new Date()).format('MMMM Do')}</p> */}
           <ProgressBar
             name="Calories"
             unit=""
@@ -80,10 +81,12 @@ class NutritionPage extends Component {
             goal={this.props.fatGoal}
             total={this.props.fatTotal}
           />
-          <button onClick={() => this.showForm('showAddFood')}><AddIcon /></button>
-          <button onClick={() => this.showForm('showSettings')}><SettingsIcon /></button>
+         
         </div>
-
+        <div className="buttons">
+          <Button variant="outlined" style={{marginRight: 10}}onClick={() => this.showForm('showAddFood')}><AddIcon /></Button>
+          <Button variant="outlined" onClick={() => this.showForm('showSettings')}><SettingsIcon /></Button>
+          </div>
         <div>
           {this.state.showAddFood === true ? (<AddFood date={this.state.date} showForm={this.showForm} />) : null}
         </div>
@@ -97,9 +100,9 @@ class NutritionPage extends Component {
             <TableRow>
               <TableCell>Description</TableCell>
               <TableCell>Calories</TableCell>
-              <TableCell>Protein (g)</TableCell>
-              <TableCell>Carbs (g)</TableCell>
-              <TableCell>Fat (g)</TableCell>
+              <TableCell>Protein</TableCell>
+              <TableCell>Carbs</TableCell>
+              <TableCell>Fat</TableCell>
               <TableCell></TableCell>
               <TableCell></TableCell>
             </TableRow>

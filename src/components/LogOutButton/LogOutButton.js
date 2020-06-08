@@ -11,12 +11,12 @@ click = () => {
   
   render() {
     return(
-      <button 
+      <div 
       className="logoutButton"
       onClick={this.click}
     >
-      Log Out
-    </button>
+      Log out
+    </div>
       )
   }
     

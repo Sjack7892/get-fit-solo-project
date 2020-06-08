@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './NutritionSettings.css';
-import { TextField } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 
 class NutritionSettings extends Component {
 
@@ -16,7 +16,7 @@ class NutritionSettings extends Component {
         this.setState({
             [propertyName]: event.target.value,
         });
-        
+
     }
 
     addFood = (event) => {
@@ -25,13 +25,15 @@ class NutritionSettings extends Component {
             type: 'PUT_GOALS',
             payload: this.state
         })
-        this.props.showForm('showSettings')   
+        this.props.showForm('showSettings')
     }
 
     render() {
         return (
             <div className="settingsForm">
-                    <h1>Settings</h1>
+                <h3 style={{marginBottom: 0}}>Set Goals</h3>
+                <br />
+                <br />
                 <form onSubmit={this.addFood}>
                     <TextField
                         label="calories"
@@ -41,8 +43,8 @@ class NutritionSettings extends Component {
                         value={this.state.calories}
                         onChange={this.handleInputChangeFor('calories')}
                     />
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
                     <TextField
                         label="protein (g)"
                         type="number"
@@ -51,8 +53,8 @@ class NutritionSettings extends Component {
                         value={this.state.protein}
                         onChange={this.handleInputChangeFor('protein')}
                     />
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
                     <TextField
                         label="carbs (g)"
                         type="number"
@@ -61,8 +63,8 @@ class NutritionSettings extends Component {
                         value={this.state.carbs}
                         onChange={this.handleInputChangeFor('carbs')}
                     />
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
                     <TextField
                         label="fat (g)"
                         type="number"
@@ -71,8 +73,9 @@ class NutritionSettings extends Component {
                         value={this.state.fat}
                         onChange={this.handleInputChangeFor('fat')}
                     />
-                    <br/>
-                    <input type="submit" value="Submit" />
+                    <br />
+                    <br />
+                    <Button type="submit" variant="outlined">Add</Button>
                 </form>
             </div>
         )

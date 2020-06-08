@@ -44,7 +44,7 @@ class RegisterPage extends Component {
         )}
         <form className="loginForm" onSubmit={this.registerUser}>
           <h1 className="title">Get Fit</h1>
-          <h3>Sign up</h3>
+          <h3 className="loginSubTitle">Sign up</h3>
           <div>
             <InputLabel htmlFor="input-with-icon-adornment">Username</InputLabel>
             <Input

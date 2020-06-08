@@ -60,7 +60,9 @@ const Nav = (props) => (
         </li>
       </div>
     </ul>
-    <button className="navCloseButton" onClick={props.navChangeStatus}><Close/></button>
+    <div className="navCloseContainer">
+    <button className="navCloseButton" style={{ border: 'none', background: 'none' }} onClick={props.navChangeStatus}><Close/></button>
+    </div>
   </div>
 );
 

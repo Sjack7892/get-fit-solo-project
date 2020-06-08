@@ -52,9 +52,9 @@ class FoodItem extends Component {
                     <>
                         <TableCell>{this.props.food.description}</TableCell>
                         <TableCell>{this.props.food.calories}</TableCell>
-                        <TableCell>{this.props.food.protein}</TableCell>
-                        <TableCell>{this.props.food.carbs}</TableCell>
-                        <TableCell>{this.props.food.fat}</TableCell>
+                        <TableCell>{this.props.food.protein}g</TableCell>
+                        <TableCell>{this.props.food.carbs}g</TableCell>
+                        <TableCell>{this.props.food.fat}g</TableCell>
                         <TableCell><button onClick={this.edit}><EditIcon /></button></TableCell>
                     </>}
                 <TableCell><button onClick={() => this.props.deleteFood(this.props.food.id)}><DeleteIcon /></button></TableCell>

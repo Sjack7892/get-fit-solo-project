@@ -1,19 +1,50 @@
 .progressBar {
-    background-color: #e1e1e1;
-    height: 10px;
-    width: 200px;
-    border: 1px solid rgb(189, 189, 189);
+    background-color: #e6e6e6;
+    height: 15px;
+    width: 400px;
+    border: 1px solid rgb(193, 193, 193);
 }
 
 .progressDone {
-    height: 10px;
-    max-width: 200px;
+    height: 15px;
+    max-width: 400px;
     background-color: #43b3ee;
 }
 
 .progressFull {
-    width: 200px;
-    height: 10px;
-    background-color: #16f29e;
+    width: 400px;
+    height: 15px;
+    background-color: #71ee9f;
     z-index: 1;
+}
+
+.progressTitle {
+    margin: 0;
+    color: rgb(108, 108, 108);
+    font-size: 16px;
+}
+
+.progressTotal {
+    display: inline-block;
+    margin-right: 80px;
+    color: rgb(138, 138, 138);
+}
+
+.progressGoal {
+    display: inline-block;
+    margin-right: 80px;
+    color: rgb(138, 138, 138);
+}
+
+.progressLeft {
+    display: inline-block;
+    color: rgb(138, 138, 138);
+}
+
+.progress {
+    /* border: 1px solid rgb(211, 211, 211); */
+    /* border-radius: 10px; */
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 2px 2px 8px rgb(211, 211, 211);
 }

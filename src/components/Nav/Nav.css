@@ -8,7 +8,7 @@
 .nav-link {
   text-decoration: none;
   font-size: 40px;
-  color: rgb(255, 255, 255);
+  color: rgb(232, 232, 232);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,7 +19,7 @@
 }
 
 .nav-link:hover {
-  color: orange;
+  color: rgb(79, 79, 79);
 }
 
 li {
@@ -28,7 +28,6 @@ li {
 
 .icon {
   margin-left: 10px;
-  font-size: 800px;
 }
 
 ul {
@@ -39,48 +38,67 @@ ul {
 
 
 .navOpen {
-  background-color: #000000e5;
+  /* background-color: #000000e5; */
+  /* background: rgb(111,194,224);
+  background: linear-gradient(0deg, rgba(111,194,224,1) 0%, rgba(20,169,223,1) 100%); */
+
+  background: rgb(20, 169, 223);
   opacity: .9;
   position: fixed;
   z-index: 2;
-  width :300px;
-  height: 350px;
+  width :260px;
+  height: 285px;
   top: -100%;
   right: 25%;
   left: 50%;
-  margin-left: -150px;
+  margin-left: -130px;
   animation: slide-open .75s forwards;
 }
 
 .navStart {
-  background-color: #000000e5;
+  /* background: rgb(20, 169, 223); */
+  background: rgb(111,194,224);
+  background: linear-gradient(0deg, rgba(111,194,224,1) 0%, rgba(20,169,223,1) 100%);
   opacity: .9;
   position: fixed;
   z-index: 2;
-  width: 300px;
-  height: 350px;
+  width: 260px;
+  height: 285px;
   right :25%;
   left: 50%;
-  margin-left: -150px;
+  margin-left: -130px;
   top: -100%;
 }
 
 .navClose {
-  background-color: #000000e5;
+  /* background: rgb(20, 169, 223); */
+  background: rgb(111,194,224);
+  background: linear-gradient(0deg, rgba(111,194,224,1) 0%, rgba(20,169,223,1) 100%);
   opacity: .9;
   position: fixed;
   z-index: 2;
-  width: 300px;
-  height: 350px;
+  width: 260px;
+  height: 285px;
   right: 25%;
   left: 50%;
-  margin-left: -150px;
+  margin-left: -130px;
   top: 0px;
   animation: slide-closed .75s forwards;
 }
 
+
+.navCloseContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .navCloseButton {
-  align-self: center;
+  color: rgb(255, 255, 255);
+}
+
+.navCloseButton:hover {
+  cursor: pointer;
+  color: rgb(79, 79, 79);
 }
 
 @keyframes slide-open {

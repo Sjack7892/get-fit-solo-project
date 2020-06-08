@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './AddFood.css';
-import { TextField } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 
 class AddFood extends Component {
 
@@ -18,7 +18,7 @@ class AddFood extends Component {
         this.setState({
             [propertyName]: event.target.value,
         });
-        
+
     }
 
     addFood = (event) => {
@@ -33,8 +33,10 @@ class AddFood extends Component {
     render() {
         return (
             <div className="addFoodForm">
-                     <h1>Add Food</h1>
+                <h3 style={{marginBottom: 0}}>Add Food</h3>
                 <form onSubmit={this.addFood}>
+                    <br />
+                    <br />
                     <TextField
                         label="description"
                         type="text"
@@ -84,7 +86,8 @@ class AddFood extends Component {
                         onChange={this.handleInputChangeFor('fat')}
                     />
                     <br />
-                    <input type="submit" value="Submit" />
+                    <br />
+                    <Button type="submit" variant="outlined">Add</Button>
                 </form>
             </div>
         )

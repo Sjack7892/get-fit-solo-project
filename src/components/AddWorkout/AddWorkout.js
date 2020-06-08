@@ -43,7 +43,6 @@ class AddWorkout extends Component {
     render() {
         return (
             <div className="addWorkoutForm">
-                     <h1>Add Workout</h1>
                      <h3>{this.props.workout}</h3>
                      <p>Previous: {this.props.previous.reps}x{this.props.previous.weight}lbs.</p>
                 <form onSubmit={this.addWorkout}>
@@ -69,7 +68,7 @@ class AddWorkout extends Component {
                     />
                     <br />
                     <br />
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Log" />
                 </form>
             </div>
         )

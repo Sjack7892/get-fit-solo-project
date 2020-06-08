@@ -8,6 +8,8 @@ import TableHead from '@material-ui/core/TableHead';
 import { TableRow } from '@material-ui/core';
 import moment from 'moment';
 import AddWorkout from '../AddWorkout/AddWorkout';
+import { InputAdornment, TextField, Input } from '@material-ui/core';
+import { Search } from '@material-ui/icons';
 // import { Add as AddIcon, Settings as SettingsIcon } from '@material-ui/icons';
 
 
@@ -54,7 +56,7 @@ class WorkoutPage extends Component {
         // this.props.dispatch({ type: 'POST_WORKOUT', payload: workout })
         this.setState({ search: '', showAddWorkout: true })
         this.setState({ workout: workout })
-    
+
         // this.state.workout.push(workout);
     }
 
@@ -62,14 +64,27 @@ class WorkoutPage extends Component {
     render() {
         return (
             <div className="workoutPage">
-                <p>{moment(new Date()).format('MMMM Do')}</p>
-                <h1>Log a workout</h1>
+                {/* <p>{moment(new Date()).format('MMMM Do')}</p> */}
+                <h2>Workout Log</h2>
                 <input
                     placeholder="search workouts..."
                     ref={input => this.search = input}
                     onChange={this.handleInputChange}
                     value={this.state.search}
                 ></input>
+
+                {/* <OutlinedInput
+                    startAdornment={
+                        <InputAdornment position="start">
+                            <Search />
+                        </InputAdornment>
+                    }
+                    placeholder="search workouts..."
+                    variant="outlined"
+                    ref={input => this.search = input}
+                    onChange={this.handleInputChange}
+                    value={this.state.search}
+                /> */}
                 <ul>
                     {this.state.search !== '' ?
                         this.props.workouts.map((workout) => {
@@ -82,7 +97,7 @@ class WorkoutPage extends Component {
                         }) : null}
                 </ul>
 
-                <Table>
+                <Table style={{ width: 500 }}>
                     <TableHead>
                         <TableRow>
                             <TableCell>Exercise</TableCell>
@@ -93,15 +108,15 @@ class WorkoutPage extends Component {
                     <TableBody>
 
                         {this.props.currentWorkout.map((workout) => {
-                                return (
-                                    <TableRow key={workout.id}>
+                            return (
+                                <TableRow key={workout.id}>
                                     <TableCell>{workout.type}</TableCell>
                                     <TableCell>{workout.reps}</TableCell>
                                     <TableCell>{workout.weight}</TableCell>
                                     <TableCell></TableCell>
-                                    </TableRow>  
-                                )
-                            })}
+                                </TableRow>
+                            )
+                        })}
 
                     </TableBody>
                 </Table>

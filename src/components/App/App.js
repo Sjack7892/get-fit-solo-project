@@ -58,7 +58,7 @@ class App extends Component {
       <div>
         {this.props.user.id && (
           <div className="menu">
-          <p style={{fontSize: 50}}>GET FIT</p>
+          <h1 style={{fontSize: 50}}>Get Fit</h1>
           <FaHamburger className="menuButton" onClick={this.handleClick} />
           </div>
         )}

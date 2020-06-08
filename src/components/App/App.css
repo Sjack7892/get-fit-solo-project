@@ -6,6 +6,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-position-y: 35%; */
+    background-color: rgb(232, 232, 232);
 }
 
 .alert {
@@ -24,6 +25,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0px 8px 10px rgb(187, 187, 187), 
+    -10px 8px 15px rgb(187, 187, 187), 10px 8px 15px rgb(187, 187, 187);
 }
 
 input {
@@ -70,9 +73,8 @@ input {
     font-size: 13px;
 }
 
-h3 {
+.loginSubTitle {
     color: rgb(174, 174, 174);
-    margin-bottom: 30px;
 }
 
 .title {
@@ -87,7 +89,8 @@ h3 {
 }
 
 .menuButton:hover {
-    color: rgb(92, 171, 213);
+    color: rgb(144, 207, 242);
+    cursor: pointer;
 }
 
 .menu {
