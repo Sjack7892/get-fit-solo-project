@@ -12,7 +12,7 @@ On the nutrition page you are able to edit your nutrient goals by clicking the s
 
 On the workout page you are able to input a workout and click add. Once added, you will be able to see details of your past performance of that workout. 
 
-To see the fully functional site, please visit: https://arcane-scrubland-21211.herokuapp.com/#/workout
+To see the fully functional site, please visit: [Get Fit] (https://arcane-scrubland-21211.herokuapp.com/#/workout)
 
 ![](documentation/images/screenshot1.png)
 
