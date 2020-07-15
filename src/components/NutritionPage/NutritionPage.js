@@ -12,7 +12,7 @@ import TableHead from '@material-ui/core/TableHead';
 import { TableRow, Button } from '@material-ui/core';
 import NutritionSettings from '../NutritionSettings/NutritionSettings'
 import moment from 'moment';
- 
+
 
 
 const date = new Date().getMonth() + 1 + "-" + new Date().getDate() + "-" + new Date().getFullYear();
@@ -50,10 +50,13 @@ class NutritionPage extends Component {
     }
   }
 
+
+
+
   render() {
     return (
       <div className="nutritionPage">
-        
+
         <div className="dataChart">
           {/* <p>Today</p> */}
           {/* <p>{moment(new Date()).format('MMMM Do')}</p> */}
@@ -81,12 +84,12 @@ class NutritionPage extends Component {
             goal={this.props.fatGoal}
             total={this.props.fatTotal}
           />
-         
+
         </div>
         <div className="buttons">
-          <Button variant="outlined" style={{marginRight: 10}}onClick={() => this.showForm('showAddFood')}><AddIcon /></Button>
+          <Button variant="outlined" style={{ marginRight: 10 }} onClick={() => this.showForm('showAddFood')}><AddIcon /></Button>
           <Button variant="outlined" onClick={() => this.showForm('showSettings')}><SettingsIcon /></Button>
-          </div>
+        </div>
         <div>
           {this.state.showAddFood === true ? (<AddFood date={this.state.date} showForm={this.showForm} />) : null}
         </div>
@@ -94,27 +97,28 @@ class NutritionPage extends Component {
         <div>
           {this.state.showSettings === true ? (<NutritionSettings showForm={this.showForm} />) : null}
         </div>
-
-        <Table style={{ width: 500 }}>
-          <TableHead>
-            <TableRow>
-              <TableCell>Description</TableCell>
-              <TableCell>Calories</TableCell>
-              <TableCell>Protein</TableCell>
-              <TableCell>Carbs</TableCell>
-              <TableCell>Fat</TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.props.food.map((food) => {
-              return (
-                <FoodItem key={food.id} food={food} deleteFood={this.deleteFood} dispatch={this.props.dispatch} />
-              )
-            })}
-          </TableBody>
-        </Table>
+        <div className="tableContainer">
+          <Table style={{ width: 500 }}>
+            <TableHead>
+              <TableRow>
+                <TableCell>Description</TableCell>
+                <TableCell>Calories</TableCell>
+                <TableCell>Protein</TableCell>
+                <TableCell>Carbs</TableCell>
+                <TableCell>Fat</TableCell>
+                <TableCell></TableCell>
+                <TableCell></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {this.props.food.map((food) => {
+                return (
+                  <FoodItem key={food.id} food={food} deleteFood={this.deleteFood} dispatch={this.props.dispatch} />
+                )
+              })}
+            </TableBody>
+          </Table>
+        </div>
       </div>
     )
   }

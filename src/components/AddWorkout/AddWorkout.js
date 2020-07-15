@@ -68,7 +68,7 @@ class AddWorkout extends Component {
                     />
                     <br />
                     <br />
-                    <input type="submit" value="Log" />
+                    <input type="submit" value="Add" />
                 </form>
             </div>
         )

@@ -65,9 +65,10 @@ class WorkoutPage extends Component {
         return (
             <div className="workoutPage">
                 {/* <p>{moment(new Date()).format('MMMM Do')}</p> */}
-                <h2>Workout Log</h2>
+                {/* <h2 className="workoutTitle">Workout Log</h2> */}
                 <input
-                    placeholder="search workouts..."
+                    className="workoutSearch"
+                    placeholder="search exercises..."
                     ref={input => this.search = input}
                     onChange={this.handleInputChange}
                     value={this.state.search}
@@ -96,30 +97,31 @@ class WorkoutPage extends Component {
                             )
                         }) : null}
                 </ul>
+                <div className="tableContainer">
+                    <Table style={{ width: 500 }}>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Exercise</TableCell>
+                                <TableCell>Reps</TableCell>
+                                <TableCell>Weight</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
 
-                <Table style={{ width: 500 }}>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Exercise</TableCell>
-                            <TableCell>Reps</TableCell>
-                            <TableCell>Weight</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
+                            {this.props.currentWorkout.map((workout) => {
+                                return (
+                                    <TableRow key={workout.id}>
+                                        <TableCell>{workout.type}</TableCell>
+                                        <TableCell>{workout.reps}</TableCell>
+                                        <TableCell>{workout.weight}lbs</TableCell>
+                                        <TableCell></TableCell>
+                                    </TableRow>
+                                )
+                            })}
 
-                        {this.props.currentWorkout.map((workout) => {
-                            return (
-                                <TableRow key={workout.id}>
-                                    <TableCell>{workout.type}</TableCell>
-                                    <TableCell>{workout.reps}</TableCell>
-                                    <TableCell>{workout.weight}</TableCell>
-                                    <TableCell></TableCell>
-                                </TableRow>
-                            )
-                        })}
-
-                    </TableBody>
-                </Table>
+                        </TableBody>
+                    </Table>
+                </div>
                 <div>
                     {this.state.showAddWorkout === true ? (<AddWorkout previous={this.props.previousWorkout} workout={this.state.workout} date={this.state.date} showForm={this.showForm} />) : null}
                 </div>

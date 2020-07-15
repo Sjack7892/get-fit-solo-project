@@ -28,6 +28,15 @@ class NutritionSettings extends Component {
         this.props.showForm('showSettings')
     }
 
+    autoFillForm = () => { 
+        this.setState({
+        calories: '3000',
+        protein: '225',
+        carbs: '300',
+        fat: '100',
+        })
+      }
+
     render() {
         return (
             <div className="settingsForm">
@@ -77,6 +86,7 @@ class NutritionSettings extends Component {
                     <br />
                     <Button type="submit" variant="outlined">Add</Button>
                 </form>
+                <button className="hiddenButton" onClick={this.autoFillForm}>Hidden</button>
             </div>
         )
     }

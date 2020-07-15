@@ -30,6 +30,16 @@ class AddFood extends Component {
         this.props.showForm('showAddFood')
     }
 
+    autoFillForm = () => { 
+        this.setState({
+        description: 'McChicken',
+        calories: '4000',
+        protein: '14',
+        carbs: '39',
+        fat: '21',
+        })
+      }
+
     render() {
         return (
             <div className="addFoodForm">
@@ -88,7 +98,9 @@ class AddFood extends Component {
                     <br />
                     <br />
                     <Button type="submit" variant="outlined">Add</Button>
+                    
                 </form>
+                <button className="hiddenButton" onClick={this.autoFillForm}>Hidden</button>
             </div>
         )
     }

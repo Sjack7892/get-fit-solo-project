@@ -3,3 +3,11 @@
     flex-direction: column;
     align-items: center;
 }
+
+.workoutTitle {
+    color: rgb(94, 94, 94);
+}
+
+.workoutSearch {
+    border-radius: 10px;
+}

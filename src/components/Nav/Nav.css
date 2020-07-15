@@ -43,7 +43,7 @@ ul {
   background: linear-gradient(0deg, rgba(111,194,224,1) 0%, rgba(20,169,223,1) 100%); */
 
   background: rgb(20, 169, 223);
-  opacity: .9;
+  opacity: .95;
   position: fixed;
   z-index: 2;
   width :260px;
